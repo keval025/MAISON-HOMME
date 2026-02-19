@@ -39,15 +39,15 @@ const ShopPage = () => {
     loadProducts();
   }, []);
 
+
+  
   useEffect(() => {
     let result = [...products];
 
-    // Category filter
     if (categoryParam && categoryParam !== 'all') {
       result = result.filter(p => p.category === categoryParam);
     }
 
-    // Search filter
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(p =>
@@ -57,7 +57,6 @@ const ShopPage = () => {
       );
     }
 
-    // Sort
     switch (sortBy) {
       case 'price-asc': result.sort((a, b) => a.price - b.price); break;
       case 'price-desc': result.sort((a, b) => b.price - a.price); break;
@@ -77,7 +76,7 @@ const ShopPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Page Header */}
+
       <div className="bg-cream-100 py-16 text-center">
         <p className="section-subtitle mb-3">Our Collection</p>
         <h1 className="section-title mb-4">
@@ -88,13 +87,11 @@ const ShopPage = () => {
         </p>
       </div>
 
-      {/* Shop Content */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Filters Bar */}
+
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10">
           <CategoryFilter activeCategory={categoryParam} onCategoryChange={handleCategoryChange} />
 
-          {/* Sort */}
           <div className="flex items-center gap-3 shrink-0">
             <FiSliders size={15} className="text-gray-400" />
             <select
@@ -109,7 +106,6 @@ const ShopPage = () => {
           </div>
         </div>
 
-        {/* Search indicator */}
         {searchQuery && !loading && (
           <div className="mb-8 p-4 bg-cream-100 border border-cream-300 flex items-center justify-between">
             <p className="text-sm text-gray-600">
